@@ -44,7 +44,13 @@ function reinitialiserEtats() {
 }
 // Validation commune pour le prénom et le nom
 function verifierTexte(champ, idErreur, nomChamp) {
-  const valeur = champ.value.trim();
+  const valeursaisi = champ.value.trim();
+
+  if (!valeursaisi) {
+    afficherErreur("Un nom ne doit pas contenir des caracteres speciaux ");
+    mettreEtat(champ, false);
+    return false;
+  }
 
   if (valeur === "") {
     afficherErreur(idErreur, `${nomChamp} est obligatoire.`);
@@ -179,31 +185,6 @@ function afficherCarte() {
     <p><strong>Présentation personnelle :</strong> ${bioValeur}</p>
   `;
 }
-
-//////
-// function afficherCarte() {
-//   const rythme = document.querySelector('input[name="rythme"]:checked').value;
-//   const interets = document.querySelectorAll('input[name="interets"]:checked');
-//   let badgesInterets = "";
-
-//   interets.forEach(function(interet) {
-//     badgesInterets += `<span class="badge">${securiserTexte(interet.value)}</span>`;
-//   });
-
-//   carte.innerHTML = `
-//     <h3>${securiserTexte(prenom.value.trim())} ${securiserTexte(nom.value.trim())}</h3>
-//     <p><strong>Email :</strong> ${securiserTexte(email.value.trim())}</p>
-//     <p><strong>Domaine :</strong> <span class="badge">${securiserTexte(domaine.value)}</span></p>
-//     <p><strong>Rythme :</strong> <span class="badge">${securiserTexte(rythme)}</span></p>
-//     <p><strong>Centres d'intérêt :</strong><br>${badgesInterets}</p>
-//     <p><strong>Présentation :</strong><br>${securiserTexte(bio.value.trim())}</p>
-//   `;
-
-//   resultat.hidden = false;
-//   resultat.scrollIntoView({ behavior: "smooth" });
-// }
-
-//////
 
 
 // Lance toutes les validations avant l'envoi du formulaire
