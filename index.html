@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mieux se connaître - ProfilTech</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- En-tête de la page avec le nom du projet -->
+  <header class="header">
+    <strong>ProfilTech</strong>
+    <span>Mieux se connaître</span>
+  </header>
+
+  <main class="container">
+    <!-- Introduction qui explique le but du formulaire -->
+    <section class="hero">
+      <h1>Formulaire d'intégration</h1>
+      <p>Remplis ce formulaire pour aider l'équipe à mieux connaître ton profil, tes habitudes et tes centres d'intérêt.</p>
+    </section>
+
+    <!-- Formulaire principal : chaque champ important a une zone d'erreur associée -->
+    <form id="formulaire" class="formulaire" novalidate>
+      <fieldset> 
+        <legend>Identité</legend>
+
+        <label for="prenom">Prénom *</label>
+        <input type="text" id="prenom" placeholder="Ex : Binetou" />
+        <p class="erreur" id="erreur-prenom"></p>
+
+        <label for="nom">Nom *</label>
+        <input type="text" id="nom" placeholder="Ex : GUEYE" />
+        <p class="erreur" id="erreur-nom"></p>
+      </fieldset>
+
+      <fieldset>
+        <legend>Contact</legend>
+
+        <label for="email">Adresse email *</label>
+        <input type="email" id="email" placeholder="binetougueye@gmail.com" />
+        <p class="erreur" id="erreur-email"></p>
+      </fieldset>
+
+      <fieldset>
+        <legend>Profil technique</legend>
+
+        <label for="domaine">Domaine préféré *</label>
+        <select id="domaine">
+          <option value="">Choisis un domaine</option>
+          <option value="Front-End">Front-End</option>
+          <option value="Back-End">Back-End</option>
+          <option value="Design / UX">Design / UX</option>
+          <option value="Data">Data</option>
+        </select>
+        <p class="erreur" id="erreur-domaine"></p>
+      </fieldset>
+
+      <fieldset>
+        <legend>Rythme de travail</legend>
+        <p class="question">Tu es plutôt... *</p>
+
+        <!-- Les boutons radio permettent de choisir une seule option -->
+        <label class="choix">
+          <input type="radio" name="rythme" value="Early Bird" /> 
+          Matin - Early Bird
+        </label>
+
+        <label class="choix">
+          <input type="radio" name="rythme" value="Night Owl" />
+          Soir - Night Owl
+        </label>
+
+        <p class="erreur" id="erreur-rythme"></p>
+      </fieldset>
+
+      <fieldset>
+        <legend>Centres d'intérêt</legend>
+        <p class="question">Choisis au moins 2 passions *</p>
+
+        <!-- Les cases à cocher permettent de choisir plusieurs options -->
+        <label class="choix">
+          <input type="checkbox" name="interets" value="Veille Tech" />
+          Veille Tech
+        </label>
+
+        <label class="choix">
+          <input type="checkbox" name="interets" value="Gaming" />
+          Gaming
+        </label>
+
+        <label class="choix">
+          <input type="checkbox" name="interets" value="Sport" />
+          Sport
+        </label>
+
+        <label class="choix">
+          <input type="checkbox" name="interets" value="Musique" />
+          Musique
+        </label>
+
+        <label class="choix">
+          <input type="checkbox" name="interets" value="Lecture" />
+          Lecture
+        </label>
+
+        <p class="erreur" id="erreur-interets"></p>
+      </fieldset>
+
+      <fieldset>
+        <legend>Présentation</legend>
+
+        <label for="bio">Raconte une anecdote ou ton ambition dans la tech *</label>
+        <textarea id="bio" maxlength="255" rows="5" placeholder="Minimum 25 caractères, maximum 255 caractères"></textarea>
+        <p class="compteur"><span id="reste">255</span> caractères restants</p>
+        <p class="erreur" id="erreur-bio"></p>
+      </fieldset>
+
+      <button type="submit">Créer mon profil</button>
+    </form>
+
+    <!-- Résultat caché au début, affiché seulement quand le formulaire est valide -->
+    <section id="resultat" class="resultat" hidden> 
+      <h4>Profil créé avec succès</h4>
+      <div id="carte" class="carte"></div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>ProfilTech - Formulaire pour mieux se connaitre et se faire connaitre</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
