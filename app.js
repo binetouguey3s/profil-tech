@@ -44,22 +44,17 @@ function reinitialiserEtats() {
 }
 // Validation commune pour le prénom et le nom
 function verifierTexte(champ, idErreur, nomChamp) {
-  const valeursaisi = champ.value.trim();
+  const valeur = champ.value.trim();
 
-  if (!valeursaisi) {
-    afficherErreur("Un nom ne doit pas contenir des caracteres speciaux ");
-    mettreEtat(champ, false);
-    return false;
-  }
-
+ 
   if (valeur === "") {
     afficherErreur(idErreur, `${nomChamp} est obligatoire.`);
     mettreEtat(champ, false);
     return false;
   }
 
-  if (valeur.length < 2) {
-    afficherErreur(idErreur, `${nomChamp} doit contenir au moins 2 caractères.`);
+  if (valeur.length < 3) {
+    afficherErreur(idErreur, `${nomChamp} doit contenir au moins 3 caractères.`);
     mettreEtat(champ, false);
     return false;
   }
@@ -136,18 +131,12 @@ function verifierInterets() {
   return true;
 }
 
-// Vérifie la longueur minimale et maximale de la présentation
+// Vérifie la longueur minimale de la présentation
 function verifierBio() {
   const longueur = bio.value.trim().length;
 
   if (longueur < 25) {
     afficherErreur("erreur-bio", `La présentation doit contenir au moins 25 caractères (${longueur}/25).`);
-    mettreEtat(bio, false);
-    return false;
-  }
-
-  if (longueur > 255) {
-    afficherErreur("erreur-bio", "La présentation ne doit pas dépasser 255 caractères.");
     mettreEtat(bio, false);
     return false;
   }
@@ -162,6 +151,16 @@ function mettreAJourCompteur() {
   reste.textContent = 255 - bio.value.length;
 }
 
+function creerLigneCarte(titre, valeur) {
+  const paragraphe = document.createElement("p");
+  const libelle = document.createElement("strong");
+
+  libelle.textContent = `${titre} :`;
+  paragraphe.append(libelle, ` ${valeur}`);
+
+  return paragraphe;
+}
+
 // Affichage de la carte avec les informations du formulaire deja validé
 function afficherCarte() {
   const prenomValeur = prenom.value.trim();
@@ -173,17 +172,20 @@ function afficherCarte() {
     return checkbox.value;
   }).join(", ");
       
-  const bioValeur = bio.value.trim(); 
-  carte.innerHTML = `
-    <h2>Voici ce que j'ai appris à te connaître :</h2>
-    <p><strong>Prénom :</strong> ${prenomValeur}</p>
-    <p><strong>Nom :</strong> ${nomValeur}</p>
-    <p><strong>Email :</strong> ${emailValeur}</p>
-    <p><strong>Domaine d'expertise :</strong> ${domaineValeur}</p>
-    <p><strong>Rythme de travail préféré :</strong> ${rythmeValeur}</p>
-    <p><strong>Centres d'intérêt :</strong> ${interetsValeur}</p>
-    <p><strong>Présentation personnelle :</strong> ${bioValeur}</p>
-  `;
+  const bioValeur = bio.value.trim();
+  const titre = document.createElement("h2");
+
+  titre.textContent = "Ton profil en résumé";
+  carte.replaceChildren(
+    titre,
+    creerLigneCarte("Prénom", prenomValeur),
+    creerLigneCarte("Nom", nomValeur),
+    creerLigneCarte("Email", emailValeur),
+    creerLigneCarte("Domaine d'expertise", domaineValeur),
+    creerLigneCarte("Rythme de travail préféré", rythmeValeur),
+    creerLigneCarte("Centres d'intérêt", interetsValeur),
+    creerLigneCarte("Présentation personnelle", bioValeur)
+  );
 }
 
 
@@ -243,7 +245,6 @@ formulaire.addEventListener("submit", function(event) {
   if (verifierTout()) {
     afficherCarte();
     resultat.hidden = false;
-    carte.style.display = "block";
     formulaire.reset();
     reinitialiserEtats();
     mettreAJourCompteur();
@@ -254,4 +255,3 @@ formulaire.addEventListener("submit", function(event) {
 
 // Initialise le compteur au chargement de la page
 mettreAJourCompteur();
-

@@ -4,9 +4,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Mieux se connaître - ProfilTech</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -28,11 +25,11 @@
       <fieldset> 
         <legend>Identité</legend>
 
-        <label for="prenom">Prénom *</label>
+        <label for="prenom">Prénom <span class="obligatoire">*</span></label>
         <input type="text" id="prenom" placeholder="Ex : Binetou" />
         <p class="erreur" id="erreur-prenom"></p>
 
-        <label for="nom">Nom *</label>
+        <label for="nom">Nom <span class="obligatoire">*</span></label>
         <input type="text" id="nom" placeholder="Ex : GUEYE" />
         <p class="erreur" id="erreur-nom"></p>
       </fieldset>
@@ -40,7 +37,7 @@
       <fieldset>
         <legend>Contact</legend>
 
-        <label for="email">Adresse email *</label>
+        <label for="email">Adresse email <span class="obligatoire">*</span></label>
         <input type="email" id="email" placeholder="binetougueye@gmail.com" />
         <p class="erreur" id="erreur-email"></p>
       </fieldset>
@@ -48,7 +45,7 @@
       <fieldset>
         <legend>Profil technique</legend>
 
-        <label for="domaine">Domaine préféré *</label>
+        <label for="domaine">Domaine préféré <span class="obligatoire">*</span></label>
         <select id="domaine">
           <option value="">Choisis un domaine</option>
           <option value="Front-End">Front-End</option>
@@ -61,7 +58,7 @@
 
       <fieldset>
         <legend>Rythme de travail</legend>
-        <p class="question">Tu es plutôt... *</p>
+        <p class="question">Tu es plutôt... <span class="obligatoire">*</span></p>
 
         <!-- Les boutons radio permettent de choisir une seule option -->
         <label class="choix">
@@ -79,7 +76,7 @@
 
       <fieldset>
         <legend>Centres d'intérêt</legend>
-        <p class="question">Choisis au moins 2 passions *</p>
+        <p class="question">Choisis au moins 2 passions <span class="obligatoire">*</span></p>
 
         <!-- Les cases à cocher permettent de choisir plusieurs options -->
         <label class="choix">
@@ -113,7 +110,7 @@
       <fieldset>
         <legend>Présentation</legend>
 
-        <label for="bio">Raconte une anecdote ou ton ambition dans la tech *</label>
+        <label for="bio">Raconte une anecdote ou ton ambition dans la tech <span class="obligatoire">*</span></label>
         <textarea id="bio" maxlength="255" rows="5" placeholder="Minimum 25 caractères, maximum 255 caractères"></textarea>
         <p class="compteur"><span id="reste">255</span> caractères restants</p>
         <p class="erreur" id="erreur-bio"></p>
@@ -123,10 +120,13 @@
     </form>
 
     <!-- Résultat caché au début, affiché seulement quand le formulaire est valide -->
+    
     <section id="resultat" class="resultat" hidden> 
-      <h4>Profil créé avec succès</h4>
+      <h4>Profil créé avec succès!</h4>
       <div id="carte" class="carte"></div>
     </section>
+
+    
   </main>
 
   <footer class="footer">
